@@ -1,0 +1,38 @@
+name: Live Source Read-only Preflight
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "tools/live-source-preflight.mjs"
+      - ".github/workflows/live-source-preflight.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run public read-only probe
+        run: node tools/live-source-preflight.mjs
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-source-preflight
+          path: preflight-output/live-source-report.json
+          if-no-files-found: error
+          retention-days: 7
