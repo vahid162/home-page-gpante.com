@@ -70,11 +70,35 @@ function gpante_home_get_new_products( int $limit = 4 ): array {
 }
 
 function gpante_home_get_sale_products( int $limit = 4 ): array {
-    if ( ! function_exists( 'wc_get_products' ) || ! function_exists( 'wc_get_product_ids_on_sale' ) ) {
+    if ( ! function_exists( 'wc_get_products' ) || ! class_exists( 'WC_Data_Store' ) ) {
         return [];
     }
 
-    $sale_ids = array_values( array_unique( array_map( 'absint', wc_get_product_ids_on_sale() ) ) );
+    $data_store = WC_Data_Store::load( 'product' );
+
+    if ( ! is_object( $data_store ) || ! method_exists( $data_store, 'get_on_sale_products' ) ) {
+        return [];
+    }
+
+    $on_sale_rows = $data_store->get_on_sale_products();
+    if ( ! is_array( $on_sale_rows ) ) {
+        return [];
+    }
+
+    $sale_ids = [];
+
+    foreach ( $on_sale_rows as $row ) {
+        $id        = isset( $row->id ) ? absint( $row->id ) : 0;
+        $parent_id = isset( $row->parent_id ) ? absint( $row->parent_id ) : 0;
+        $target_id = $parent_id ?: $id;
+
+        if ( $target_id ) {
+            $sale_ids[] = $target_id;
+        }
+    }
+
+    $sale_ids = array_values( array_unique( $sale_ids ) );
+
     if ( ! $sale_ids ) {
         return [];
     }
