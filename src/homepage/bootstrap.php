@@ -49,3 +49,18 @@ function gpante_home_enqueue_assets(): void {
     }
 }
 add_action( 'wp_enqueue_scripts', 'gpante_home_enqueue_assets', 30 );
+
+
+/**
+ * Keep public preview pages out of search indexes.
+ * The real Front Page remains indexable.
+ */
+function gpante_home_preview_robots( array $robots ): array {
+    if ( gpante_home_is_enabled() && ! is_front_page() ) {
+        $robots['noindex'] = true;
+        $robots['nofollow'] = true;
+    }
+
+    return $robots;
+}
+add_filter( 'wp_robots', 'gpante_home_preview_robots' );
