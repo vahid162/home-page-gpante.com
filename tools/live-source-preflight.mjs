@@ -209,3 +209,4 @@ for (const route of elementorCandidateRoutes) {
     report.wordpress.elementorCandidateRequests[route] = { error: error.message };
   }
 }
+
