@@ -30,7 +30,7 @@
     radial-gradient(circle at 10% 4%, rgba(238, 106, 45, 0.08), transparent 26rem),
     var(--hp-bg);
   color: var(--hp-ink);
-  font-family: Vazirmatn, IRANSansX, "Segoe UI", Tahoma, Arial, sans-serif;
+  font-family: inherit;
 }
 
 .hp a {
