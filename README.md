@@ -375,6 +375,7 @@ http://localhost:8080/
 - [UI Brief صفحه اصلی](./docs/homepage-ui-brief.md)
 - [Integration Architecture](./docs/homepage-integration-architecture.md)
 - [Live Source Preflight](./docs/live-source-preflight.md)
+- [WP-CLI Read-only Preflight](./tools/wp-cli-readonly-preflight.sh)
 - [قواعد AI Agentها](./AGENTS.md)
 
 ## لینک‌ها
@@ -384,6 +385,6 @@ http://localhost:8080/
 
 ## وضعیت پروژه
 
-**Current phase: Integration Architecture / Read-only Theme Preflight**
+**Current phase: Theme Preflight Resolved / Authenticated Form-Action Check Remaining**
 
-Visual Baseline v0.3 تثبیت شده و Data Source/Integration Architecture برای WordPress، WooCommerce و wpForo ثبت شده است. هنوز اتصال واقعی یا تغییر Production آغاز نشده است. گام بعدی فقط Read-only audit از Woodmart/woodmart-child و تنظیمات فعلی Elementor Form است.
+Visual Baseline v0.3 و Integration Architecture تثبیت شده‌اند. Theme/Template preflight عمومی حل شده است: Homepage فعلی از fallback والد `woodmart/page.php` استفاده می‌کند. تنها Blocker پیش از جایگزینی Backend فرم تماس، خواندن authenticated و فقط‌خواندنی Actionهای Elementor Form `b25d804` است. سایر Componentهای غیرتماسی می‌توانند وارد Implementation شوند.
