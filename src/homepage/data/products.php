@@ -23,6 +23,7 @@ function gpante_home_normalize_product( $product ): ?array {
         'image_id'           => $image_id,
         'image_alt'          => $image_id ? (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '',
         'price_html'         => (string) $product->get_price_html(),
+        'short_description'  => wp_trim_words( wp_strip_all_tags( (string) $product->get_short_description() ), 24, '…' ),
         'regular_price_html' => is_numeric( $regular ) && '' !== $regular ? wc_price( (float) $regular ) : '',
         'sale_price_html'    => is_numeric( $sale ) && '' !== $sale ? wc_price( (float) $sale ) : '',
         'is_on_sale'         => (bool) $product->is_on_sale(),
