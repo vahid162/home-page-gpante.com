@@ -322,6 +322,11 @@ Sectionها در Template نهایی Homepage ترکیب می‌شوند.
 - اطلاعات پویا نباید بی‌دلیل Hard-code شوند.
 - هیچ ادعای Performance بدون Benchmark پذیرفته نیست.
 
+## مستندات طراحی
+
+- [UI Brief صفحه اصلی](./docs/homepage-ui-brief.md)
+- [قواعد AI Agentها](./AGENTS.md)
+
 ## لینک‌ها
 
 - سایت اصلی: https://gpante.com/
@@ -329,6 +334,6 @@ Sectionها در Template نهایی Homepage ترکیب می‌شوند.
 
 ## وضعیت پروژه
 
-**Current phase: Documentation / Discovery / Architecture**
+**Current phase: UI Brief / Design Direction / Prototype Preparation**
 
-گام بعدی پیشنهادی، تهیهٔ Inventory دقیق Section به Section از Main Content فعلی و تعیین Data Source و Acceptance Criteria برای هر بخش است.
+UI Brief اولیه ثبت شده است. گام بعدی، ساخت Prototype سبک و Responsive برای Main Content بر اساس سند طراحی و سپس بررسی و تأیید Visual Direction است.
