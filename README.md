@@ -352,6 +352,6 @@ http://localhost:8080/
 
 ## وضعیت پروژه
 
-**Current phase: Responsive Prototype / Visual Review**
+**Current phase: Responsive Prototype v0.2 / Visual Approval**
 
-Prototype مستقل Main Content ایجاد شده است. گام بعدی، بررسی Visual Direction در Desktop / Tablet / Mobile، ثبت اصلاحات طراحی و سپس تأیید قبل از اتصال داده‌های واقعی WordPress/WooCommerce است.
+Prototype مستقل Main Content ایجاد و یک دور Visual Review روی ساختار و Responsive behavior انجام شده است. نسخه v0.2 اکنون برای بررسی و تأیید بصری در Desktop / Tablet / Mobile آماده است؛ اتصال داده‌های واقعی WordPress/WooCommerce هنوز آغاز نشده است.
