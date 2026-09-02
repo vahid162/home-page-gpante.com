@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Prototype محتوای صفحه اصلی پانته</title>
+  <meta name="description" content="Prototype مستقل برای بازطراحی Main Content صفحه اصلی gpante.com">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="hp" id="main-content">
+    <div class="hp__prototype-note" role="note">
+      <span class="hp__prototype-dot" aria-hidden="true"></span>
+      Prototype طراحی — داده‌ها آزمایشی هستند و Header / Footer عمداً نمایش داده نشده‌اند.
+    </div>
+
+    <section class="hp-hero hp-shell" aria-labelledby="hero-title">
+      <div class="hp-hero__content">
+        <p class="hp-eyebrow">طراحی برای تولید، نه فقط نمایش</p>
+        <h1 id="hero-title">فایل‌های آماده برای برش لیزری و CNC، سریع‌تر پیدا و انتخاب شوند</h1>
+        <p class="hp-hero__lead">
+          طرح‌های آماده، فایل‌های رایگان، آموزش‌های تخصصی و خدمات طراحی اختصاصی را
+          در یک تجربه ساده‌تر و حرفه‌ای‌تر پیدا کنید.
+        </p>
+
+        <form class="hp-search" action="#" method="get" role="search" data-prototype-search>
+          <label class="sr-only" for="prototype-search">جست‌وجوی فایل و طرح</label>
+          <span class="hp-search__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <path d="m21 21-4.6-4.6m2.1-5.1a7.2 7.2 0 1 1-14.4 0 7.2 7.2 0 0 1 14.4 0Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <input id="prototype-search" name="q" type="search" placeholder="مثلاً باکس هدیه، استند، وکتور، فایل رایگان..." autocomplete="off">
+          <button class="hp-btn hp-btn--primary hp-search__submit" type="submit">جست‌وجو</button>
+        </form>
+
+        <div class="hp-hero__actions">
+          <a class="hp-btn hp-btn--primary" href="#products">مشاهده طرح‌ها</a>
+          <a class="hp-btn hp-btn--secondary" href="#categories">مرور دسته‌بندی‌ها</a>
+        </div>
+
+        <ul class="hp-hero__micro" aria-label="مزیت‌ها">
+          <li><span aria-hidden="true">✓</span> دسترسی سریع به فایل‌ها</li>
+          <li><span aria-hidden="true">✓</span> دسته‌بندی تخصصی</li>
+          <li><span aria-hidden="true">✓</span> طراحی برای ساخت واقعی</li>
+        </ul>
+      </div>
+
+      <div class="hp-hero__visual" aria-hidden="true">
+        <div class="hp-machine">
+          <div class="hp-machine__rail"></div>
+          <div class="hp-machine__head">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="hp-machine__beam"></div>
+          <div class="hp-machine__work">
+            <i></i><i></i><i></i><i></i>
+          </div>
+          <div class="hp-machine__spark hp-machine__spark--1"></div>
+          <div class="hp-machine__spark hp-machine__spark--2"></div>
+          <div class="hp-machine__spark hp-machine__spark--3"></div>
+        </div>
+        <div class="hp-hero__visual-label">
+          <strong>Laser / CNC</strong>
+          <span>Ready-to-make files</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="hp-section hp-shell" id="categories" aria-labelledby="categories-title">
+      <div class="hp-section__head">
+        <div>
+          <p class="hp-eyebrow">مرور سریع</p>
+          <h2 id="categories-title">دسته‌بندی طرح‌های برش لیزر</h2>
+          <p>از مسیر مناسب وارد شوید؛ تعدادها در نسخه واقعی از WooCommerce دریافت می‌شوند.</p>
+        </div>
+        <a class="hp-text-link" href="#" aria-label="مشاهده همه دسته‌بندی‌ها">مشاهده همه <span aria-hidden="true">←</span></a>
+      </div>
+
+      <div class="hp-category-grid" data-category-grid>
+        <a class="hp-category-card" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">▣</span>
+          <span><strong>جعبه و باکس</strong><small>۳۱۳ محصول آزمایشی</small></span>
+        </a>
+        <a class="hp-category-card" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">◇</span>
+          <span><strong>استند لیزری</strong><small>۶۱ محصول آزمایشی</small></span>
+        </a>
+        <a class="hp-category-card" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">✦</span>
+          <span><strong>بازی و سرگرمی</strong><small>۳۲ محصول آزمایشی</small></span>
+        </a>
+        <a class="hp-category-card" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">⌂</span>
+          <span><strong>دکور خانه و اداره</strong><small>۹۳ محصول آزمایشی</small></span>
+        </a>
+        <a class="hp-category-card" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">A</span>
+          <span><strong>وکتور برش لیزری</strong><small>۳۴۶ محصول آزمایشی</small></span>
+        </a>
+        <a class="hp-category-card" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">☼</span>
+          <span><strong>روشنایی</strong><small>۳۷ محصول آزمایشی</small></span>
+        </a>
+        <a class="hp-category-card hp-category-card--extra" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">▤</span>
+          <span><strong>لوازم اداری و تبلیغاتی</strong><small>۱۴۸ محصول آزمایشی</small></span>
+        </a>
+        <a class="hp-category-card hp-category-card--extra" href="#">
+          <span class="hp-category-card__icon" aria-hidden="true">▱</span>
+          <span><strong>مجموعه قاب‌ها</strong><small>۷ محصول آزمایشی</small></span>
+        </a>
+      </div>
+
+      <button class="hp-btn hp-btn--secondary hp-mobile-only hp-category-toggle" type="button" aria-expanded="false" data-category-toggle>
+        نمایش دسته‌های بیشتر
+      </button>
+    </section>
+
+    <section class="hp-section hp-shell" aria-labelledby="offers-title">
+      <div class="hp-section__head">
+        <div>
+          <p class="hp-eyebrow">فرصت‌های محدود</p>
+          <h2 id="offers-title">تخفیف‌های ویژه</h2>
+          <p>کارت‌های سبک‌تر با تمرکز روی تصویر، عنوان و قیمت.</p>
+        </div>
+        <a class="hp-text-link" href="#">همه تخفیف‌ها <span aria-hidden="true">←</span></a>
+      </div>
+
+      <div class="hp-product-strip" aria-label="محصولات تخفیف‌دار">
+        <article class="hp-product-card hp-product-card--sale">
+          <a class="hp-product-card__media hp-product-art hp-product-art--box" href="#" aria-label="فایل برش لیزر باکس هدیه">
+            <span class="hp-sale-badge">٪۲۰-</span>
+          </a>
+          <div class="hp-product-card__body">
+            <p class="hp-product-card__meta">فایل آماده برش</p>
+            <h3><a href="#">فایل برش لیزر باکس هدیه</a></h3>
+            <div class="hp-price"><del>۲۴۰٬۰۰۰ تومان</del><strong>۱۹۲٬۰۰۰ تومان</strong></div>
+          </div>
+        </article>
+
+        <article class="hp-product-card hp-product-card--sale">
+          <a class="hp-product-card__media hp-product-art hp-product-art--stand" href="#" aria-label="استند فروشگاهی">
+            <span class="hp-sale-badge">٪۱۵-</span>
+          </a>
+          <div class="hp-product-card__body">
+            <p class="hp-product-card__meta">طرح حرفه‌ای</p>
+            <h3><a href="#">طرح استند فروشگاهی چندطبقه</a></h3>
+            <div class="hp-price"><del>۳۲۰٬۰۰۰ تومان</del><strong>۲۷۲٬۰۰۰ تومان</strong></div>
+          </div>
+        </article>
+
+        <article class="hp-product-card hp-product-card--sale">
+          <a class="hp-product-card__media hp-product-art hp-product-art--lamp" href="#" aria-label="چراغ دکوراتیو">
+            <span class="hp-sale-badge">٪۲۵-</span>
+          </a>
+          <div class="hp-product-card__body">
+            <p class="hp-product-card__meta">فایل دکوراتیو</p>
+            <h3><a href="#">چراغ دکوراتیو لایه‌ای</a></h3>
+            <div class="hp-price"><del>۱۸۰٬۰۰۰ تومان</del><strong>۱۳۵٬۰۰۰ تومان</strong></div>
+          </div>
+        </article>
+
+        <article class="hp-product-card hp-product-card--sale">
+          <a class="hp-product-card__media hp-product-art hp-product-art--toy" href="#" aria-label="پازل چوبی">
+            <span class="hp-sale-badge">٪۱۰-</span>
+          </a>
+          <div class="hp-product-card__body">
+            <p class="hp-product-card__meta">بازی و سرگرمی</p>
+            <h3><a href="#">پازل چوبی ساختنی</a></h3>
+            <div class="hp-price"><del>۱۵۰٬۰۰۰ تومان</del><strong>۱۳۵٬۰۰۰ تومان</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="hp-section hp-shell" id="products" aria-labelledby="products-title">
+      <div class="hp-section__head hp-section__head--products">
+        <div>
+          <p class="hp-eyebrow">پیشنهادهای پانته</p>
+          <h2 id="products-title">فایل‌هایی که ارزش دیدن دارند</h2>
+          <p>Prototype تب‌های جدیدترین و پرفروش‌ترین؛ داده واقعی بعداً از WooCommerce می‌آید.</p>
+        </div>
+        <div class="hp-tabs" role="tablist" aria-label="نوع فهرست محصولات">
+          <button class="hp-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="new-products" id="tab-new" data-tab="new-products">جدیدترین‌ها</button>
+          <button class="hp-tab" type="button" role="tab" aria-selected="false" aria-controls="best-products" id="tab-best" data-tab="best-products">پرفروش‌ترین‌ها</button>
+        </div>
+      </div>
+
+      <div class="hp-tab-panel is-active" id="new-products" role="tabpanel" aria-labelledby="tab-new">
+        <div class="hp-product-grid">
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--box2" href="#" aria-label="باکس آجیل مدرن"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">جدید</p>
+              <h3><a href="#">باکس آجیل مدرن با مونتاژ ساده</a></h3>
+              <div class="hp-price"><strong>۲۱۱٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--organizer" href="#" aria-label="نظم‌دهنده رومیزی"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">جدید</p>
+              <h3><a href="#">نظم‌دهنده رومیزی ماژولار</a></h3>
+              <div class="hp-price"><strong>۱۸۵٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--kitchen" href="#" aria-label="ماکت آشپزخانه"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">جدید</p>
+              <h3><a href="#">ماکت آشپزخانه برای ساخت با MDF</a></h3>
+              <div class="hp-price"><strong>۲۸۰٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--frame" href="#" aria-label="قاب دکوراتیو"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">جدید</p>
+              <h3><a href="#">قاب دکوراتیو چندلایه</a></h3>
+              <div class="hp-price"><strong>۱۶۸٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="hp-tab-panel" id="best-products" role="tabpanel" aria-labelledby="tab-best" hidden>
+        <div class="hp-product-grid">
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--stand2" href="#" aria-label="استند رومیزی"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">پرفروش</p>
+              <h3><a href="#">استند رومیزی چندمنظوره</a></h3>
+              <div class="hp-price"><strong>۲۶۳٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--gift" href="#" aria-label="جعبه هدیه"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">پرفروش</p>
+              <h3><a href="#">جعبه هدیه مناسبتی</a></h3>
+              <div class="hp-price"><strong>۱۵۰٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--sign" href="#" aria-label="تابلو اسم"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">پرفروش</p>
+              <h3><a href="#">تابلو اسم و نوشته لایه‌ای</a></h3>
+              <div class="hp-price"><strong>۱۹۵٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+          <article class="hp-product-card">
+            <a class="hp-product-card__media hp-product-art hp-product-art--decor" href="#" aria-label="دکور رومیزی"></a>
+            <div class="hp-product-card__body">
+              <p class="hp-product-card__meta">پرفروش</p>
+              <h3><a href="#">دکور رومیزی هندسی</a></h3>
+              <div class="hp-price"><strong>۱۴۵٬۰۰۰ تومان</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="hp-center-action">
+        <a class="hp-btn hp-btn--secondary" href="#">مشاهده همه فایل‌ها</a>
+      </div>
+    </section>
+
+    <section class="hp-section hp-shell" aria-label="مزیت‌های خدمات">
+      <div class="hp-value-grid">
+        <article class="hp-value-card">
+          <span class="hp-value-card__icon" aria-hidden="true">↓</span>
+          <div><h2>دانلود سریع</h2><p>مسیر دریافت فایل کوتاه و واضح باشد.</p></div>
+        </article>
+        <article class="hp-value-card">
+          <span class="hp-value-card__icon" aria-hidden="true">✓</span>
+          <div><h2>فایل‌های استاندارد</h2><p>فرمت و مشخصات فایل قبل از خرید شفاف باشد.</p></div>
+        </article>
+        <article class="hp-value-card">
+          <span class="hp-value-card__icon" aria-hidden="true">✎</span>
+          <div><h2>طراحی اختصاصی</h2><p>وقتی فایل آماده کافی نیست، مسیر سفارش مشخص باشد.</p></div>
+        </article>
+        <article class="hp-value-card">
+          <span class="hp-value-card__icon" aria-hidden="true">?</span>
+          <div><h2>پشتیبانی تخصصی</h2><p>راهنمایی بعد از خرید از بخش فروش جدا و قابل فهم باشد.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="hp-section hp-shell hp-knowledge" aria-label="دانش و پاسخ">
+      <article class="hp-list-panel" aria-labelledby="qa-title">
+        <div class="hp-list-panel__head">
+          <div><p class="hp-eyebrow">Community</p><h2 id="qa-title">جدیدترین پرسش و پاسخ‌ها</h2></div>
+          <a class="hp-text-link" href="#">همه پرسش‌ها <span aria-hidden="true">←</span></a>
+        </div>
+        <div class="hp-list">
+          <a class="hp-list-item" href="#">
+            <span class="hp-list-item__mark" aria-hidden="true">؟</span>
+            <span><strong>برای حکاکی چند قطعه کوچک چه تنظیمی مناسب‌تر است؟</strong><small>نمونه محتوای Prototype • ۲ روز پیش</small></span>
+          </a>
+          <a class="hp-list-item" href="#">
+            <span class="hp-list-item__mark" aria-hidden="true">؟</span>
+            <span><strong>برای MDF سه میلی‌متر چه فرمت فایلی بهتر است؟</strong><small>نمونه محتوای Prototype • ۴ روز پیش</small></span>
+          </a>
+          <a class="hp-list-item" href="#">
+            <span class="hp-list-item__mark" aria-hidden="true">؟</span>
+            <span><strong>آیا فایل‌های خریداری‌شده قابل ویرایش هستند؟</strong><small>نمونه محتوای Prototype • ۱ هفته پیش</small></span>
+          </a>
+        </div>
+      </article>
+
+      <article class="hp-list-panel" aria-labelledby="articles-title">
+        <div class="hp-list-panel__head">
+          <div><p class="hp-eyebrow">Knowledge</p><h2 id="articles-title">مقالات کاربردی</h2></div>
+          <a class="hp-text-link" href="#">همه مقالات <span aria-hidden="true">←</span></a>
+        </div>
+        <div class="hp-list">
+          <a class="hp-list-item hp-list-item--article" href="#">
+            <span class="hp-list-item__thumb hp-product-art hp-product-art--laser" aria-hidden="true"></span>
+            <span><strong>راهنمای تنظیمات اولیه برای برش تمیزتر</strong><small>۵ دقیقه مطالعه • نمونه Prototype</small></span>
+          </a>
+          <a class="hp-list-item hp-list-item--article" href="#">
+            <span class="hp-list-item__thumb hp-product-art hp-product-art--material" aria-hidden="true"></span>
+            <span><strong>چطور متریال مناسب پروژه را انتخاب کنیم؟</strong><small>۷ دقیقه مطالعه • نمونه Prototype</small></span>
+          </a>
+          <a class="hp-list-item hp-list-item--article" href="#">
+            <span class="hp-list-item__thumb hp-product-art hp-product-art--software" aria-hidden="true"></span>
+            <span><strong>نرم‌افزارهای ضروری برای آماده‌سازی فایل برش</strong><small>۴ دقیقه مطالعه • نمونه Prototype</small></span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <section class="hp-section hp-shell hp-support" aria-labelledby="support-title">
+      <div class="hp-support__content">
+        <p class="hp-eyebrow">بعد از خرید هم مسیر روشن بماند</p>
+        <h2 id="support-title">پشتیبانی باید بخشی از تجربه خرید باشد، نه یک بخش فراموش‌شده</h2>
+        <p>
+          در نسخه نهایی، متن این قسمت فقط بر اساس خدمات واقعی پانته نوشته می‌شود.
+          در Prototype هدف ما نمایش ساختار و اولویت بصری این پیام است.
+        </p>
+        <a class="hp-btn hp-btn--secondary" href="#">آشنایی با پشتیبانی</a>
+      </div>
+      <div class="hp-support__points">
+        <div><span aria-hidden="true">01</span><strong>مسیر دریافت فایل</strong><small>شفاف و بدون ابهام</small></div>
+        <div><span aria-hidden="true">02</span><strong>راهنمای استفاده</strong><small>در جای درست و قابل پیدا کردن</small></div>
+        <div><span aria-hidden="true">03</span><strong>تماس تخصصی</strong><small>برای مواردی که پاسخ آماده ندارند</small></div>
+      </div>
+    </section>
+
+    <section class="hp-section hp-shell" aria-labelledby="testimonials-title">
+      <div class="hp-section__head">
+        <div>
+          <p class="hp-eyebrow">Social proof</p>
+          <h2 id="testimonials-title">رضایت مشتریان، با ارائه واقعی و خوانا</h2>
+          <p>متن‌های زیر فقط Placeholder طراحی هستند و در نسخه واقعی استفاده نمی‌شوند.</p>
+        </div>
+      </div>
+
+      <div class="hp-testimonial-grid">
+        <article class="hp-testimonial">
+          <div class="hp-testimonial__quote" aria-hidden="true">“</div>
+          <p>محل نمایش نظر واقعی مشتری. در نسخه نهایی هیچ نقل‌قول یا نام ساختگی استفاده نمی‌شود.</p>
+          <footer><span class="hp-avatar" aria-hidden="true"></span><span><strong>نام واقعی مشتری</strong><small>داده واقعی بعداً متصل می‌شود</small></span></footer>
+        </article>
+        <article class="hp-testimonial">
+          <div class="hp-testimonial__quote" aria-hidden="true">“</div>
+          <p>کارت دوم برای بررسی اندازه متن، فاصله‌ها و رفتار Responsive در حالت محتوای طولانی‌تر است.</p>
+          <footer><span class="hp-avatar" aria-hidden="true"></span><span><strong>نام واقعی مشتری</strong><small>Placeholder طراحی</small></span></footer>
+        </article>
+        <article class="hp-testimonial">
+          <div class="hp-testimonial__quote" aria-hidden="true">“</div>
+          <p>در صورت استفاده از تصاویر رضایت فعلی، نسخه موبایل باید امکان خواندن راحت آن‌ها را حفظ کند.</p>
+          <footer><span class="hp-avatar" aria-hidden="true"></span><span><strong>منبع تأییدشده</strong><small>بدون محتوای جعلی</small></span></footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="hp-section hp-shell hp-contact" aria-labelledby="contact-title">
+      <div class="hp-contact__copy">
+        <p class="hp-eyebrow">طرح مناسب را پیدا نکردید؟</p>
+        <h2 id="contact-title">برای طراحی اختصاصی، درخواست تماس بگذارید</h2>
+        <p>در نسخه واقعی، این فرم فقط پس از بررسی Backend و مسیر ثبت فعلی به سیستم سایت متصل می‌شود.</p>
+      </div>
+
+      <form class="hp-contact__form" novalidate data-contact-form>
+        <label for="mobile-number">شماره موبایل</label>
+        <div class="hp-contact__row">
+          <input id="mobile-number" name="mobile" type="tel" inputmode="numeric" autocomplete="tel" placeholder="09xxxxxxxxx" aria-describedby="mobile-help mobile-status">
+          <button class="hp-btn hp-btn--primary" type="submit">درخواست تماس</button>
+        </div>
+        <small id="mobile-help">Prototype: فرم به هیچ Backend یا سرویس واقعی ارسال نمی‌شود.</small>
+        <p class="hp-form-status" id="mobile-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="hp-section hp-shell hp-community" aria-labelledby="community-title">
+      <div class="hp-community__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="34" height="34">
+          <path d="M21.2 3.4 3.8 10.1c-1.2.5-1.2 1.2-.2 1.5l4.5 1.4 1.7 5.2c.2.7.1 1 .9 1 .6 0 .9-.3 1.2-.6l2.2-2.1 4.6 3.4c.9.5 1.5.3 1.8-.8l3.1-14.7c.4-1.4-.5-2-1.4-1Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="hp-community__copy">
+        <p class="hp-eyebrow">جامعه تخصصی پانته</p>
+        <h2 id="community-title">آموزش، فایل تازه و گفت‌وگوی تخصصی را در تلگرام دنبال کنید</h2>
+        <p>کانال برای دریافت محتوا؛ گروه برای پرسش و تبادل تجربه.</p>
+      </div>
+      <div class="hp-community__actions">
+        <a class="hp-btn hp-btn--primary" href="#">عضویت در کانال</a>
+        <a class="hp-btn hp-btn--secondary" href="#">ورود به گروه گفتگو</a>
+      </div>
+    </section>
+
+    <div class="hp__end-note hp-shell" role="note">
+      پایان Prototype Main Content — Footer سایت واقعی باید بعد از این نقطه و بدون تغییر نمایش داده شود.
+    </div>
+  </main>
+</body>
+</html>
