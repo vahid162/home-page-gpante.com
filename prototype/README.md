@@ -54,3 +54,18 @@ http://localhost:8080/
 - کاهش شلوغی Community CTA در Mobile.
 
 این مرحله هنوز Visual Prototype است و Data Source واقعی متصل نشده است.
+
+
+## Visual review v0.3
+
+این نسخه بر اساس Screenshot واقعی Desktop / Tablet / Mobile اصلاح شد.
+
+اصلاح‌های اصلی:
+
+- Hero در Tablet از حالت دو ستونه فشرده خارج شد و به Layout خواناتر تبدیل شد.
+- متن‌های توسعه‌ای داخل UI با Copy واقعی‌تر و مناسب Visual Review جایگزین شدند.
+- Special Offers در Mobile از Carousel نیمه‌بریده به دو Card فشرده و عمودی تبدیل شد.
+- Testimonials در Mobile از Carousel به Cardهای عمودی محدود تبدیل شد.
+- ریتم عمودی و تراکم اطلاعات در Mobile کاهش یافت.
+- Header و Footer همچنان خارج از Scope هستند.
+- هیچ اتصال WordPress/WooCommerce اضافه نشده است.
