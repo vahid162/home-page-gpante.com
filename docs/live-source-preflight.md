@@ -332,3 +332,73 @@ wp post meta get 10 _elementor_data --format=json
 The Elementor JSON output must be parsed only for widget ID `b25d804` and its action-related settings.
 
 No update, delete, activate, deactivate, search-replace, cache purge, or database write is required.
+
+
+## 17. Authenticated WP-CLI form verification
+
+Authenticated read-only WP-CLI inspection was completed for Page ID `10` and Elementor Form widget `b25d804`.
+
+### Confirmed active theme
+
+- Active stylesheet: `woodmart-child`
+- Parent template: `woodmart`
+- Active theme: `woodmart-child`
+- Child theme version: `1.0.0`
+- Homepage page template: `default`
+
+This removes the remaining uncertainty about the active theme.
+
+### Confirmed plugin versions
+
+- Elementor: `4.2.4`
+- Elementor Pro: `4.1.2`
+
+### Confirmed form identity
+
+- Widget ID: `b25d804`
+- Widget type: `form`
+- Form name: `New Form`
+- Submit button: `با من تماس بگیرید`
+- Field:
+  - custom id: `name`
+  - type: `tel`
+  - label: `شماره موبایل`
+  - required: true
+  - placeholder: `09`
+
+### Confirmed active submit actions
+
+The form's active `submit_actions` are exactly:
+
+```text
+save-to-database
+email
+```
+
+Therefore the current production behavior that must be preserved is:
+
+1. Save the submitted lead to the form/database submission layer.
+2. Send an email using the configured Elementor email action.
+
+### Confirmed inactive integrations
+
+No active action was found for:
+
+- webhook
+- redirect
+- mailchimp
+- activecampaign
+- getresponse
+
+Configured email-related keys exist for both primary and secondary email settings, but only the active `email` action may be treated as executable behavior. Stored secondary email settings alone are not evidence that a second email action is currently executed.
+
+### Contact migration implication
+
+A replacement contact handler is not acceptable unless it preserves both active side effects:
+
+- persistent lead storage
+- email notification
+
+The exact destination email address does not need to be committed to this repository and must remain server-side/private.
+
+The contact backend blocker is now resolved.
