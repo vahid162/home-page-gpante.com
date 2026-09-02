@@ -161,3 +161,47 @@ function gpante_home_callback_status_message(): ?array {
 
     return $messages[ $status ] ?? null;
 }
+
+
+function gpante_home_callback_admin_columns( array $columns ): array {
+    return [
+        'cb'                    => $columns['cb'] ?? '<input type="checkbox" />',
+        'title'                 => 'درخواست',
+        'gpante_callback_mobile'=> 'شماره موبایل',
+        'gpante_email_status'   => 'وضعیت ایمیل',
+        'date'                  => $columns['date'] ?? 'تاریخ',
+    ];
+}
+add_filter( 'manage_gpante_callback_posts_columns', 'gpante_home_callback_admin_columns' );
+
+function gpante_home_callback_admin_column( string $column, int $post_id ): void {
+    if ( 'gpante_callback_mobile' === $column ) {
+        echo esc_html( (string) get_post_meta( $post_id, '_gpante_callback_mobile', true ) );
+        return;
+    }
+
+    if ( 'gpante_email_status' === $column ) {
+        echo esc_html( (string) get_post_meta( $post_id, '_gpante_callback_email_status', true ) );
+    }
+}
+add_action( 'manage_gpante_callback_posts_custom_column', 'gpante_home_callback_admin_column', 10, 2 );
+
+function gpante_home_callback_details_box( WP_Post $post ): void {
+    $mobile = (string) get_post_meta( $post->ID, '_gpante_callback_mobile', true );
+    $status = (string) get_post_meta( $post->ID, '_gpante_callback_email_status', true );
+
+    echo '<p><strong>شماره موبایل:</strong> ' . esc_html( $mobile ) . '</p>';
+    echo '<p><strong>وضعیت اعلان ایمیل:</strong> ' . esc_html( $status ) . '</p>';
+}
+
+function gpante_home_register_callback_meta_box(): void {
+    add_meta_box(
+        'gpante-callback-details',
+        'جزئیات درخواست تماس',
+        'gpante_home_callback_details_box',
+        'gpante_callback',
+        'normal',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes_gpante_callback', 'gpante_home_register_callback_meta_box' );
