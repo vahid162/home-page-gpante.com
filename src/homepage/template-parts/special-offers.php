@@ -8,16 +8,12 @@ if ( ! $products ) {
     return;
 }
 ?>
-<section class="hp-section hp-shell" aria-labelledby="offers-title">
-    <div class="hp-section__head">
-        <div>
-            <p class="hp-eyebrow">فرصت‌های محدود</p>
-            <h2 id="offers-title">تخفیف‌های ویژه</h2>
-            <p>فایل‌های منتخب با تخفیف را سریع و بدون شلوغی مقایسه کنید.</p>
-        </div>
-    </div>
+<section class="hp-section hp-shell hp-sale-section" aria-labelledby="offers-title">
+    <header class="hp-heading hp-heading--compact">
+        <h2 id="offers-title">تخفیف های تکرار نشدنی</h2>
+    </header>
 
-    <div class="hp-product-strip" aria-label="محصولات تخفیف‌دار">
+    <div class="hp-sale-grid" aria-label="محصولات تخفیف‌دار">
         <?php foreach ( $products as $product ) : ?>
             <?php gpante_home_render_part( 'product-card', [ 'product' => $product, 'context' => 'sale' ] ); ?>
         <?php endforeach; ?>
