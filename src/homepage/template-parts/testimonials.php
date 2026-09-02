@@ -9,29 +9,14 @@ if ( ! $items ) {
 }
 ?>
 <section class="hp-section hp-shell" aria-labelledby="testimonials-title">
-    <div class="hp-section__head">
-        <div>
-            <p class="hp-eyebrow">تجربه مشتریان</p>
-            <h2 id="testimonials-title">بازخوردهای واقعی مشتریان</h2>
-            <p>در این بخش فقط تصاویر واقعی و تأییدشده موجود در Media Library نمایش داده می‌شوند.</p>
-        </div>
-    </div>
+    <header class="hp-heading hp-heading--compact">
+        <h2 id="testimonials-title">نظرات و رضایت برخی از همکاران</h2>
+    </header>
 
-    <div class="hp-testimonial-grid hp-testimonial-grid--images">
-        <?php foreach ( $items as $item ) : ?>
-            <figure class="hp-testimonial hp-testimonial--image">
-                <?php
-                echo wp_get_attachment_image(
-                    (int) $item['attachment_id'],
-                    'large',
-                    false,
-                    [
-                        'alt'      => $item['alt'],
-                        'loading'  => 'lazy',
-                        'decoding' => 'async',
-                    ]
-                ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                ?>
+    <div class="hp-testimonial-grid" aria-label="تصاویر رضایت مشتریان">
+        <?php foreach ( $items as $index => $item ) : ?>
+            <figure class="hp-testimonial">
+                <img src="<?php echo esc_url( $item['url'] ); ?>" alt="<?php echo esc_attr( $item['alt'] . ' ' . ( $index + 1 ) ); ?>" loading="lazy" decoding="async">
             </figure>
         <?php endforeach; ?>
     </div>
