@@ -107,8 +107,19 @@
       bestSellersLoaded = true;
     } catch (error) {
       if (status) {
-        status.textContent = "پرفروش‌ترین‌ها فعلاً در دسترس نیستند؛ از لینک فروشگاه استفاده کنید.";
+        status.textContent = "پرفروش‌ترین‌ها فعلاً در دسترس نیستند.";
       }
+
+      const fallbackUrl = section.dataset.bestSellersFallbackUrl;
+      if (grid && fallbackUrl && !grid.querySelector("[data-best-fallback]")) {
+        const fallback = document.createElement("a");
+        fallback.href = fallbackUrl;
+        fallback.className = "hp-btn hp-btn--secondary";
+        fallback.dataset.bestFallback = "true";
+        fallback.textContent = "مشاهده پرفروش‌ترین‌ها در فروشگاه";
+        grid.appendChild(fallback);
+      }
+
       grid?.classList.add("has-error");
     } finally {
       bestSellersLoading = false;
