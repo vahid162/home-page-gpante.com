@@ -16,7 +16,6 @@
 
     const amount = raw / Math.pow(10, minor);
     const formatted = new Intl.NumberFormat("fa-IR", {
-      minimumFractionDigits: 0,
       maximumFractionDigits: Math.max(0, minor),
     }).format(amount);
 
@@ -30,12 +29,11 @@
 
   function createBestSellerCard(product) {
     const article = document.createElement("article");
-    article.className = "hp-product-card";
+    article.className = "hp-product-card hp-product-card--new";
 
     const media = document.createElement("a");
     media.className = "hp-product-card__media";
     media.href = String(product.permalink || "#");
-    media.setAttribute("aria-label", String(product.name || ""));
 
     const image = Array.isArray(product.images) ? product.images[0] : null;
     if (image && (image.thumbnail || image.src)) {
@@ -54,12 +52,19 @@
       media.appendChild(placeholder);
     }
 
+    if (product.on_sale) {
+      const badge = document.createElement("span");
+      badge.className = "hp-sale-badge";
+      badge.textContent = "تخفیف";
+      media.appendChild(badge);
+    }
+
     const body = document.createElement("div");
     body.className = "hp-product-card__body";
 
-    const meta = document.createElement("p");
-    meta.className = "hp-product-card__meta";
-    meta.textContent = "پرفروش";
+    const brand = document.createElement("div");
+    brand.className = "hp-product-card__brand";
+    brand.textContent = "پانته";
 
     const heading = document.createElement("h3");
     const titleLink = document.createElement("a");
@@ -69,11 +74,9 @@
 
     const price = document.createElement("div");
     price.className = "hp-price";
-    const strong = document.createElement("strong");
-    strong.textContent = formatStorePrice(product.prices);
-    price.appendChild(strong);
+    price.textContent = formatStorePrice(product.prices);
 
-    body.append(meta, heading, price);
+    body.append(brand, heading, price);
     article.append(media, body);
 
     return article;
@@ -85,6 +88,7 @@
     const endpoint = section.dataset.bestSellersUrl;
     const grid = section.querySelector("[data-best-products-grid]");
     const status = section.querySelector("[data-best-products-status]");
+
     if (!endpoint || !grid) return;
 
     bestSellersLoading = true;
@@ -114,13 +118,11 @@
       if (grid && fallbackUrl && !grid.querySelector("[data-best-fallback]")) {
         const fallback = document.createElement("a");
         fallback.href = fallbackUrl;
-        fallback.className = "hp-btn hp-btn--secondary";
+        fallback.className = "hp-btn hp-btn--outline";
         fallback.dataset.bestFallback = "true";
         fallback.textContent = "مشاهده پرفروش‌ترین‌ها در فروشگاه";
         grid.appendChild(fallback);
       }
-
-      grid?.classList.add("has-error");
     } finally {
       bestSellersLoading = false;
     }
@@ -153,6 +155,7 @@
 
       event.preventDefault();
       let nextIndex = index;
+
       if (event.key === "ArrowLeft") nextIndex = (index + 1) % tabButtons.length;
       if (event.key === "ArrowRight") nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
       if (event.key === "Home") nextIndex = 0;
