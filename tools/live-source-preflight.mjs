@@ -149,12 +149,11 @@ for (const [key, url] of Object.entries(urls)) {
         } else {
           report[key] = Array.isArray(data) ? data.slice(0, 3) : data;
         }
-      } else if (key === "childThemeStyle" || key === "parentThemeStyle") {
-        report.wordpress[key] = result.text.slice(0, 4000);
-      }
       } catch (error) {
         report.notes.push(`${key}: JSON parse failed: ${error.message}`);
       }
+    } else if (key === "childThemeStyle" || key === "parentThemeStyle") {
+      report.wordpress[key] = result.text.slice(0, 4000);
     }
   } catch (error) {
     report.endpoints[key] = { error: error.message };
