@@ -354,7 +354,7 @@ In these cases, report the constraint and propose the smallest safe next step.
 
 ## 20. Current project phase
 
-The project has completed public theme/template preflight. Non-contact homepage components may proceed to implementation. The contact backend remains blocked on authenticated read-only inspection of Elementor Form `b25d804` actions.
+The project has completed theme/template and authenticated form-action preflight. Implementation may proceed section by section. Elementor Form `b25d804` currently performs `save-to-database` and `email`; any replacement contact handler must preserve both side effects.
 
 Do not treat the homepage redesign/implementation as approved merely because this repository exists.
 
@@ -400,3 +400,21 @@ Mandatory decisions from those documents:
 - Do not replace the Elementor callback form backend until the current form actions for `b25d804` have been inspected read-only.
 - Do not dequeue Elementor assets unless Header/Footer dependency has been proven absent.
 - Keep current Elementor homepage data restorable until production validation is complete.
+
+
+## 23. Contact form parity requirement
+
+The current production contact form has exactly two active submit actions:
+
+- `save-to-database`
+- `email`
+
+Any custom replacement must preserve both behaviors before the Elementor form may be removed from the Homepage Main Content.
+
+Requirements:
+
+- Persist the submitted lead using WordPress-native server-side storage.
+- Send the notification email server-side.
+- Keep recipient addresses and other private delivery configuration out of Git.
+- Do not infer or activate a second email path merely because secondary email settings exist in Elementor data.
+- Do not introduce webhook, redirect, marketing integrations, or other side effects that are not currently active.
