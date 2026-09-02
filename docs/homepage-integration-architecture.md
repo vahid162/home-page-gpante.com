@@ -1,7 +1,7 @@
 # Homepage Integration Architecture
 
 **Baseline:** Visual v0.3  
-**Architecture status:** Approved for implementation planning  
+**Architecture status:** Repository Implementation v1 complete; staging validation pending  
 **Scope:** Main Content only  
 **Header/Footer:** Out of scope  
 **Production changes:** None in this phase
@@ -917,3 +917,34 @@ The only remaining deployment-time check is to confirm whether Header/Footer sti
 That check does not block implementation of the custom Homepage Main Content.
 
 Implementation may now begin section by section in the repository/staging path.
+
+
+---
+
+# 31. Repository implementation result
+
+Implementation v1 now exists in the repository and follows this architecture.
+
+Implemented:
+
+- Child-theme-safe bootstrap and explicit Page Template feature gate.
+- Server-side Hero, Categories, Special Offers, Newest Products, Value Proposition, Q&A, Articles, Support, Testimonials container, Contact and Telegram components.
+- Dynamic WooCommerce adapters.
+- Current WooCommerce Product Data Store interface for on-sale product discovery.
+- Public Store API progressive enhancement for Best-selling products.
+- wpForo public recent-activity adapter with forum view-permission checks.
+- Native Callback persistence and email parity.
+- Scoped Homepage CSS and native JavaScript.
+- Automated PHP/JS/contract CI.
+
+Not yet validated:
+
+- Real WordPress runtime behavior after copying files into `woodmart-child`.
+- Actual product/category/wpForo output on staging.
+- Private callback email recipient configuration and real mail delivery.
+- Real testimonial Attachment IDs.
+- Header/Footer visual regression with the custom Page Template.
+- Elementor asset dependency after the Main Content switch.
+- Comparable SEO/performance measurements.
+
+Production must remain unchanged until those staging validations pass.
