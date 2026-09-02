@@ -15,7 +15,6 @@ if ( ! $products ) {
             <h2 id="offers-title">تخفیف‌های ویژه</h2>
             <p>فایل‌های منتخب با تخفیف را سریع و بدون شلوغی مقایسه کنید.</p>
         </div>
-        <a class="hp-text-link" href="<?php echo esc_url( add_query_arg( 'on_sale', '1', $data['editorial']['shop_url'] ?? home_url( '/' ) ) ); ?>">همه تخفیف‌ها <span aria-hidden="true">←</span></a>
     </div>
 
     <div class="hp-product-strip" aria-label="محصولات تخفیف‌دار">
