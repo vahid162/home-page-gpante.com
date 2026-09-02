@@ -18,11 +18,12 @@ function gpante_home_get_editorial(): array {
             ],
             home_url( '/' )
         ),
-        'search_url'  => home_url( '/' ),
-        'values'      => $config['value_propositions'],
-        'support'     => $config['support'],
-        'telegram'    => $config['telegram'],
-        'contact'     => $config['contact'],
+        'search_url'   => home_url( '/' ),
+        'promo_banners'=> $config['promo_banners'] ?? [],
+        'support'      => $config['support'] ?? [],
+        'testimonials' => $config['testimonial_urls'] ?? [],
+        'telegram'     => $config['telegram'],
+        'contact'      => $config['contact'],
     ];
 }
 
@@ -30,22 +31,15 @@ function gpante_home_get_testimonials(): array {
     $config = gpante_home_config();
     $items  = [];
 
-    foreach ( array_map( 'absint', $config['testimonial_attachment_ids'] ?? [] ) as $attachment_id ) {
-        if ( ! $attachment_id ) {
-            continue;
-        }
-
-        $image = wp_get_attachment_image_src( $attachment_id, 'large' );
-        if ( ! $image ) {
+    foreach ( $config['testimonial_urls'] ?? [] as $url ) {
+        $url = esc_url_raw( (string) $url );
+        if ( '' === $url ) {
             continue;
         }
 
         $items[] = [
-            'attachment_id' => $attachment_id,
-            'url'           => $image[0],
-            'width'         => (int) $image[1],
-            'height'        => (int) $image[2],
-            'alt'           => (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ),
+            'url' => $url,
+            'alt' => 'رضایت مشتری از گروه پانته',
         ];
     }
 
