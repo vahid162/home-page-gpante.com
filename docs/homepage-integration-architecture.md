@@ -318,11 +318,11 @@ WooCommerce.
 Preferred server-side source:
 
 ```php
-wc_get_product_ids_on_sale()
+WC_Data_Store::load( 'product' )->get_on_sale_products()
 wc_get_products()
 ```
 
-WooCommerce خود `wc_get_product_ids_on_sale()` را به‌عنوان API برای Productهای On Sale ارائه می‌کند.
+در WooCommerce جدید، helper قدیمی `wc_get_product_ids_on_sale()` deprecated شده است. Implementation از Product Data Store interface استفاده می‌کند و Query دیتابیس را به خود WooCommerce واگذار می‌کند.
 
 ## Query contract
 
