@@ -8,10 +8,11 @@ if ( ! $products ) {
     return;
 }
 
-$best_url = gpante_home_get_bestseller_store_api_url( 4 );
-$shop_url = $data['editorial']['shop_url'] ?? home_url( '/' );
+$best_url     = gpante_home_get_bestseller_store_api_url( 4 );
+$shop_url     = $data['editorial']['shop_url'] ?? home_url( '/' );
+$fallback_url = add_query_arg( 'orderby', 'popularity', $shop_url );
 ?>
-<section class="hp-section hp-shell" id="products" aria-labelledby="products-title" data-products-section data-best-sellers-url="<?php echo esc_url( $best_url ); ?>">
+<section class="hp-section hp-shell" id="products" aria-labelledby="products-title" data-products-section data-best-sellers-url="<?php echo esc_url( $best_url ); ?>" data-best-sellers-fallback-url="<?php echo esc_url( $fallback_url ); ?>">
     <div class="hp-section__head hp-section__head--products">
         <div>
             <p class="hp-eyebrow">پیشنهادهای پانته</p>
@@ -45,7 +46,7 @@ $shop_url = $data['editorial']['shop_url'] ?? home_url( '/' );
 
     <noscript>
         <p class="hp-noscript-link">
-            <a href="<?php echo esc_url( add_query_arg( 'orderby', 'popularity', $shop_url ) ); ?>">مشاهده پرفروش‌ترین‌ها در فروشگاه</a>
+            <a href="<?php echo esc_url( $fallback_url ); ?>">مشاهده پرفروش‌ترین‌ها در فروشگاه</a>
         </p>
     </noscript>
 </section>
