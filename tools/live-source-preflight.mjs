@@ -97,8 +97,13 @@ const urls = {
   wpJsonRoot: base + "/wp-json/",
   wpTypes: base + "/wp-json/wp/v2/types",
   wpPosts: base + "/wp-json/wp/v2/posts?per_page=1&_fields=id,slug,date,title,link,excerpt,featured_media",
+  homepagePage: base + "/wp-json/wp/v2/pages/10?_fields=id,slug,status,template,link,parent,menu_order",
+  activeThemes: base + "/wp-json/wp/v2/themes?status=active",
+  wpSettings: base + "/wp-json/wp/v2/settings",
   wcProducts: base + "/wp-json/wc/store/v1/products?per_page=1",
-  wcCategories: base + "/wp-json/wc/store/v1/products/categories?per_page=100"
+  wcCategories: base + "/wp-json/wc/store/v1/products/categories?per_page=100",
+  childThemeStyle: base + "/wp-content/themes/woodmart-child/style.css",
+  parentThemeStyle: base + "/wp-content/themes/woodmart/style.css"
 };
 
 for (const [key, url] of Object.entries(urls)) {
@@ -115,10 +120,24 @@ for (const [key, url] of Object.entries(urls)) {
         const data = JSON.parse(result.text);
         if (key === "wpJsonRoot") {
           report.wordpress.namespaces = data.namespaces || [];
-          const routes = Object.keys(data.routes || {});
+          const routesObj = data.routes || {};
+          const routes = Object.keys(routesObj);
           report.wordpress.relevantRoutes = routes.filter(route =>
             /anspress|question|answer|contact|form|woocommerce|wc\/store|wp\/v2\/posts|product/i.test(route)
           ).slice(0, 300);
+          report.wordpress.elementorRoutes = Object.fromEntries(
+            Object.entries(routesObj)
+              .filter(([route]) => route.startsWith("/elementor/") || route.startsWith("/elementor-pro/"))
+              .map(([route, def]) => [route, {
+                methods: def.methods,
+                endpoints: (def.endpoints || []).map(ep => ({
+                  methods: ep.methods,
+                  args: Object.keys(ep.args || {})
+                }))
+              }])
+          );
+        } else if (key === "homepagePage") {
+          report.wordpress.homepagePage = data;
         } else if (key === "wpTypes") {
           report.wordpress.types = Object.fromEntries(
             Object.entries(data).map(([slug, value]) => [slug, {
@@ -130,6 +149,9 @@ for (const [key, url] of Object.entries(urls)) {
         } else {
           report[key] = Array.isArray(data) ? data.slice(0, 3) : data;
         }
+      } else if (key === "childThemeStyle" || key === "parentThemeStyle") {
+        report.wordpress[key] = result.text.slice(0, 4000);
+      }
       } catch (error) {
         report.notes.push(`${key}: JSON parse failed: ${error.message}`);
       }
@@ -165,3 +187,26 @@ fs.writeFileSync(
 );
 
 console.log(JSON.stringify(report, null, 2));
+
+
+const elementorCandidateRoutes = [
+  "/wp-json/elementor/v1/documents/10",
+  "/wp-json/elementor/v1/documents/10/elements",
+  "/wp-json/elementor/v1/globals",
+  "/wp-json/elementor-pro/v1/forms"
+];
+
+report.wordpress.elementorCandidateRequests = {};
+for (const route of elementorCandidateRoutes) {
+  try {
+    const result = await fetchText(base + route);
+    report.wordpress.elementorCandidateRequests[route] = {
+      status: result.status,
+      ok: result.ok,
+      contentType: result.contentType,
+      bodyPreview: result.text.slice(0, 1200)
+    };
+  } catch (error) {
+    report.wordpress.elementorCandidateRequests[route] = { error: error.message };
+  }
+}
