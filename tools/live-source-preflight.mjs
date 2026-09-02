@@ -64,6 +64,35 @@ for (const match of homepage.text.matchAll(/<form\b[\s\S]*?<\/form>/gi)) {
 }
 report.homepage.contactLikeForms = formSnippets;
 
+const allForms = [];
+for (const match of homepage.text.matchAll(/<form\b[\s\S]*?<\/form>/gi)) {
+  const raw = match[0];
+  const plain = raw.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const inputs = [...raw.matchAll(/<input\b[^>]*>/gi)].map(inputMatch => {
+    const tag = inputMatch[0];
+    const attr = name => (tag.match(new RegExp(name + '=["\\\']([^"\\\']*)', 'i')) || [])[1] || "";
+    return {
+      type: attr("type") || "text",
+      name: attr("name"),
+      id: attr("id"),
+      value: attr("value"),
+      placeholder: attr("placeholder")
+    };
+  });
+  const action = (raw.match(/action=["']([^"']*)/i) || [])[1] || "";
+  const method = ((raw.match(/method=["']([^"']*)/i) || [])[1] || "GET").toUpperCase();
+  const classes = (raw.match(/class=["']([^"']*)/i) || [])[1] || "";
+
+  allForms.push({
+    action,
+    method,
+    classes,
+    text: plain.slice(0, 500),
+    inputs
+  });
+}
+report.homepage.forms = allForms;
+
 const urls = {
   wpJsonRoot: base + "/wp-json/",
   wpTypes: base + "/wp-json/wp/v2/types",
