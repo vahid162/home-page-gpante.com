@@ -36,3 +36,21 @@ http://localhost:8080/
 تمام قیمت‌ها، تعدادها، نام محصولات، پرسش‌ها، مقاله‌ها و Testimonials این Prototype نمونه طراحی هستند و نباید به‌عنوان داده واقعی Production استفاده شوند.
 
 پس از تأیید Visual Direction، مرحله بعد اتصال Componentها به WordPress/WooCommerce و جایگزینی Mock Data با داده واقعی است.
+
+
+## Visual review v0.2
+
+در بازبینی دوم Prototype این اصلاح‌ها اعمال شدند:
+
+- Hero کوتاه‌تر و Focus بیشتر روی H1 و Search.
+- حذف Visual تزئینی Hero در Mobile برای کاهش ارتفاع Above-the-fold.
+- اصلاح H1 و CTAها برای نزدیکی بیشتر به محتوای واقعی سایت.
+- فارسی‌سازی Labelهای انگلیسی داخل Sectionها.
+- کاهش فاصله عمودی Sectionها.
+- یک‌ستونه شدن Value Proposition در Mobile.
+- فشرده‌تر شدن Product Cardها در Mobile.
+- یک‌دست شدن ارتفاع و ساختار Product Cardها در Desktop.
+- بهبود Typography و text wrapping.
+- کاهش شلوغی Community CTA در Mobile.
+
+این مرحله هنوز Visual Prototype است و Data Source واقعی متصل نشده است.
