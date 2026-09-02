@@ -442,3 +442,25 @@ CI نهایی این موارد را پاس کرده است:
 - Contact database/email parity guard.
 
 مرحله بعدی: نصب همین Implementation در Staging/نسخه امن Child Theme و اجرای Runtime، Visual، Functional، SEO و Performance validation قبل از هر Production switch.
+
+
+## Current Homepage Match v1
+
+The custom Homepage visual source of truth is now the current public `gpante.com` Homepage rather than the earlier prototype.
+
+Implemented alignment includes:
+
+- Current Hero copy/search/CTA hierarchy.
+- Current eight-category order with live WooCommerce category thumbnails/counts.
+- Three-product sale section.
+- Six-product newest/best-selling recommendations.
+- Two current service/resource banners.
+- Current Q&A and articles hierarchy.
+- Current support visual/copy.
+- Current public testimonial screenshots.
+- Current design-request callback block.
+- Current Telegram community CTA.
+- Typography inherited from the active theme (Dana on the current site).
+- Colors derive from Woodmart CSS variables where available.
+
+A public non-front-page preview using the custom template is automatically `noindex,nofollow`.
