@@ -1814,3 +1814,116 @@ a {
     min-height: 116px;
   }
 }
+
+
+/* Visual review refinements v0.3 — screenshot-based */
+@media (max-width: 900px) and (min-width: 721px) {
+  .hp-hero {
+    display: block;
+    padding: 34px;
+  }
+
+  .hp-hero__content {
+    max-width: 680px;
+    margin-inline: auto;
+  }
+
+  .hp-hero__visual {
+    display: none;
+  }
+
+  .hp-hero h1 {
+    max-width: 660px;
+    font-size: clamp(2.35rem, 6vw, 3.15rem);
+  }
+
+  .hp-search {
+    max-width: none;
+  }
+
+  .hp-hero__micro {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .hp__prototype-note,
+  .hp__end-note {
+    padding: 9px 11px;
+    font-size: .68rem;
+    line-height: 1.55;
+  }
+
+  .hp-section__head .hp-text-link {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hp-product-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+    gap: 10px;
+  }
+
+  .hp-product-strip .hp-product-card {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .hp-product-strip .hp-product-card:nth-child(n+3) {
+    display: none;
+  }
+
+  .hp-product-strip .hp-product-card__media {
+    min-height: 132px;
+    aspect-ratio: auto;
+    border-bottom: 0;
+    border-left: 1px solid var(--hp-line);
+  }
+
+  .hp-product-strip .hp-product-card__body {
+    padding: 13px 14px;
+  }
+
+  .hp-product-strip .hp-product-card h3 {
+    font-size: .92rem;
+    line-height: 1.65;
+  }
+
+  .hp-product-strip .hp-price {
+    gap: 5px;
+  }
+
+  .hp-testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  .hp-testimonial {
+    min-height: 0;
+    width: 100%;
+  }
+
+  .hp-testimonial:nth-child(n+3) {
+    display: none;
+  }
+
+  .hp-contact__copy p,
+  .hp-support__content p {
+    font-size: .88rem;
+    line-height: 1.85;
+  }
+
+  .hp-community__copy p {
+    font-size: .86rem;
+    line-height: 1.75;
+  }
+}
