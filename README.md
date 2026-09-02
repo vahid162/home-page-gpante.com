@@ -385,6 +385,6 @@ http://localhost:8080/
 
 ## وضعیت پروژه
 
-**Current phase: Theme Preflight Resolved / Authenticated Form-Action Check Remaining**
+**Current phase: Integration Ready / Implementation Can Begin**
 
-Visual Baseline v0.3 و Integration Architecture تثبیت شده‌اند. Theme/Template preflight عمومی حل شده است: Homepage فعلی از fallback والد `woodmart/page.php` استفاده می‌کند. تنها Blocker پیش از جایگزینی Backend فرم تماس، خواندن authenticated و فقط‌خواندنی Actionهای Elementor Form `b25d804` است. سایر Componentهای غیرتماسی می‌توانند وارد Implementation شوند.
+Visual Baseline v0.3 و Integration Architecture تثبیت شده‌اند. Active Theme با WP-CLI به‌صورت `woodmart-child` تأیید شد و Form `b25d804` نیز بررسی شد: رفتار فعلی شامل `save-to-database` و `email` است. Blocker معماری باقی نمانده و Implementation مرحله‌ای Main Content می‌تواند شروع شود.
