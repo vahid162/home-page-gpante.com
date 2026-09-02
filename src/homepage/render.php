@@ -3,10 +3,6 @@
 defined( 'ABSPATH' ) || exit;
 
 function gpante_home_is_enabled(): bool {
-    if ( ! is_front_page() ) {
-        return false;
-    }
-
     if ( defined( 'GPANTE_HOME_FORCE_ENABLE' ) && GPANTE_HOME_FORCE_ENABLE ) {
         return true;
     }
