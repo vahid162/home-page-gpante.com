@@ -589,23 +589,29 @@ field   = form_fields[name]
 type    = tel
 ```
 
-## Critical precondition
+## Confirmed current behavior
 
-قبل از جایگزینی Submission backend باید در WordPress Admin به‌صورت Read-only مشخص شود Elementor Form Actions فعلی چیست:
+Authenticated read-only inspection is complete.
 
-- Email?
-- Elementor Submissions?
-- Webhook?
-- Redirect?
-- Other integration?
+The current Elementor Form `b25d804` has exactly these active submit actions:
 
-تا این inspection انجام نشده، Backend جدید نباید Production-ready اعلام شود.
+```text
+save-to-database
+email
+```
+
+Therefore the replacement must preserve both behaviors:
+
+1. persistent lead storage;
+2. email notification.
+
+No active webhook, redirect, Mailchimp, ActiveCampaign, or GetResponse action was found.
+
+Stored secondary email configuration keys are present, but because no second email action appears in `submit_actions`, they must not be treated as an active second delivery path.
 
 ## Target baseline
 
-پس از مشخص‌شدن parity:
-
-Native WordPress form handler، ترجیحاً:
+Native WordPress form handler:
 
 ```text
 POST /wp-admin/admin-post.php
@@ -618,6 +624,28 @@ Hooks:
 admin_post_gpante_home_callback_request
 admin_post_nopriv_gpante_home_callback_request
 ```
+
+The handler must perform two explicit side effects after validation:
+
+### A. Persistent lead storage
+
+Preferred first implementation:
+
+- dedicated private Custom Post Type or equally maintainable WordPress-native storage;
+- not publicly queryable;
+- only the minimum submitted data required for operations;
+- timestamp and request metadata only where justified;
+- no direct SQL.
+
+Do not silently drop the current save-to-database behavior.
+
+### B. Email notification
+
+Use server-side WordPress mail delivery (`wp_mail()`) to the current private destination.
+
+The destination address must remain server-side configuration and must not be committed to the repository.
+
+Before staging parity testing, retrieve the current Elementor primary email destination privately on the server and configure the replacement there.
 
 ## Validation
 
@@ -868,25 +896,24 @@ At this point, all public Data Sources except Contact side effects and Theme tem
 
 ---
 
-# 30. Remaining read-only checks before coding
+# 30. Remaining checks before coding
 
-The public Theme/Template preflight is now substantially complete:
+The architecture blockers are resolved.
 
-- Homepage Page ID 10 uses no assigned custom Page Template.
-- No `front-page.php` was found in Child or Parent.
-- No Child `page.php` was found.
-- Parent `woodmart/page.php` exists and is the current template fallback path.
+Confirmed:
+
+- Homepage Page ID 10 uses the default Page Template.
+- Active stylesheet is `woodmart-child`.
+- Parent template is `woodmart`.
+- No Child or Parent `front-page.php` is present.
+- No Child `page.php` is present.
+- Parent `woodmart/page.php` is the current fallback template path.
 - Woodmart Parent version is 8.5.7.
-- Woodmart Child version is 1.0.0 and contains live Homepage Q&A styling.
+- Woodmart Child version is 1.0.0.
+- Elementor Form `b25d804` active actions are `save-to-database` and `email`.
 
-Only these authenticated read-only items remain:
+The only remaining deployment-time check is to confirm whether Header/Footer still require specific Elementor runtime assets before any Elementor dequeue optimization.
 
-1. Confirm exact active `stylesheet` / theme status.
-2. Inspect Elementor Pro form `b25d804` action settings and destinations.
-3. Confirm whether Header/Footer require Elementor runtime assets before any dequeue work.
+That check does not block implementation of the custom Homepage Main Content.
 
-Items 1 and 2 can be resolved with WP-CLI / WordPress authenticated read-only access. Item 3 can be resolved during staging asset/network validation.
-
-The Contact backend must not be replaced before item 2 is known.
-
-All non-contact homepage components can proceed to implementation planning from the documented public contracts.
+Implementation may now begin section by section in the repository/staging path.
