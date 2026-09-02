@@ -340,6 +340,20 @@ http://localhost:8080/
 
 این Prototype فقط Main Content را نمایش می‌دهد، از Mock Data استفاده می‌کند و به WordPress، WooCommerce یا Production متصل نیست.
 
+## Visual QA خودکار
+
+برای جلوگیری از وابستگی تست بصری به دسترسی Browser این محیط، یک مسیر QA قابل تکرار داخل Repository اضافه شده است.
+
+فایل‌ها:
+
+- `.github/workflows/prototype-visual-qa.yml`
+- `prototype/qa/visual-check.mjs`
+- `prototype/qa/README.md`
+
+این Workflow روی تغییرات Prototype در Desktop، Tablet و Mobile اجرا می‌شود و Screenshot کامل صفحه و Report JSON تولید می‌کند.
+
+اولین اجرای تأییدی Workflow با موفقیت کامل شد و تست‌های Overflow، H1، Scope Header/Footer، JavaScript errors، Product Tabs، فرم تماس و رفتار Mobile پاس شدند.
+
 ## مستندات طراحی
 
 - [UI Brief صفحه اصلی](./docs/homepage-ui-brief.md)
