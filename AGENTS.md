@@ -359,3 +359,26 @@ The project is currently in documentation, inventory, architecture, and planning
 Do not treat the homepage redesign/implementation as approved merely because this repository exists.
 
 Implementation should proceed section by section after the required behavior, data source, visual target, and acceptance criteria for that section are understood.
+
+
+## 21. Automated visual QA
+
+For changes under `prototype/`, use the repository visual QA workflow as the preferred reproducible browser-validation path.
+
+The workflow is defined in:
+
+- `.github/workflows/prototype-visual-qa.yml`
+- `prototype/qa/visual-check.mjs`
+
+Requirements:
+
+- Render the committed prototype in Chromium, not a separately recreated mock.
+- Test Desktop, Tablet, and Mobile viewports.
+- Check for page-level horizontal overflow.
+- Verify that Header and Footer remain outside prototype scope.
+- Verify critical interactions such as product tabs, mobile category expansion, and contact-form validation.
+- Capture full-page screenshots for all required viewports.
+- Preserve the generated QA report and screenshots as a workflow artifact.
+- Do not claim screenshot-based visual QA passed unless the workflow completed successfully and its outputs were inspected.
+- If direct browser access to GitHub or another external host is blocked, do not treat that as a blocker. Use the repository workflow or a local checkout/file-based render path instead.
+- CI-only QA dependencies must not be added to the production front-end bundle.
