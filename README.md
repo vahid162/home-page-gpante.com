@@ -385,6 +385,60 @@ http://localhost:8080/
 
 ## وضعیت پروژه
 
-**Current phase: Integration Ready / Implementation Can Begin**
+**Current phase: Repository Implementation v1 / Staging Validation Pending**
 
-Visual Baseline v0.3 و Integration Architecture تثبیت شده‌اند. Active Theme با WP-CLI به‌صورت `woodmart-child` تأیید شد و Form `b25d804` نیز بررسی شد: رفتار فعلی شامل `save-to-database` و `email` است. Blocker معماری باقی نمانده و Implementation مرحله‌ای Main Content می‌تواند شروع شود.
+Visual Baseline v0.3 و Integration Architecture تثبیت شده‌اند. Repository Implementation v1 اکنون شامل Data Adapterها، SSR Template Partها، scoped CSS/JS، Best-selling Store API enhancement و Callback storage/email parity است. CI نهایی روی PHP 8.3 و Node پاس شده است. هیچ تغییر Production انجام نشده و مرحله بعد Staging Integration و Runtime/Visual validation روی WordPress واقعی است.
+
+
+## Repository Implementation v1
+
+Implementation واقعی Main Content در Repository ایجاد شده است.
+
+ساختار اصلی:
+
+```text
+src/homepage/
+├── bootstrap.php
+├── config.php
+├── render.php
+├── data/
+│   ├── editorial.php
+│   ├── categories.php
+│   ├── products.php
+│   ├── posts.php
+│   └── wpforo.php
+├── forms/
+│   └── callback-request.php
+├── template-parts/
+└── assets/
+    ├── homepage.css
+    └── homepage.js
+
+templates/page-gpante-home.php
+integration/functions-loader.php
+```
+
+ویژگی‌های پیاده‌سازی‌شده:
+
+- Server-side rendering برای محتوای اصلی.
+- WooCommerce product/category adapters.
+- WooCommerce Store API برای Best-selling tab.
+- wpForo recent public activity adapter با permission check.
+- WordPress Posts adapter برای مقالات.
+- Native product search contract فعلی.
+- Callback form با nonce، validation، rate limiting، persistent private storage و `wp_mail()`.
+- Feature Gate بر اساس Page Template جدید.
+- Elementor Homepage فعلی به‌عنوان Rollback دست‌نخورده باقی مانده است.
+- هیچ Elementor asset به‌صورت خودکار dequeue نمی‌شود.
+
+CI نهایی این موارد را پاس کرده است:
+
+- PHP 8.3 syntax.
+- JavaScript syntax.
+- Mobile normalization test.
+- Direct-SQL guard.
+- Production CSS scope guard.
+- Safe activation gate.
+- Contact database/email parity guard.
+
+مرحله بعدی: نصب همین Implementation در Staging/نسخه امن Child Theme و اجرای Runtime، Visual، Functional، SEO و Performance validation قبل از هر Production switch.
