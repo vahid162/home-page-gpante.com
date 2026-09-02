@@ -113,3 +113,21 @@ Rollback اولیه:
 این Implementation هیچ Elementor asset را Dequeue نمی‌کند.
 
 پس از Staging باید Network/visual regression بررسی کند Header/Footer به کدام assetهای Elementor وابسته‌اند. فقط assetهای اثبات‌شدهٔ غیرضروری می‌توانند در مرحله Performance optimization حذف شوند.
+
+
+## Private preview before Homepage switch
+
+Before assigning the custom template to the real Homepage, create a separate Draft or Private WordPress Page and assign:
+
+```text
+GPante Custom Homepage
+```
+
+The Homepage assets load only for pages using this template, so the public Homepage remains untouched.
+
+Important:
+
+- Do not change Settings → Reading yet.
+- Do not assign the template to Page ID 10 yet.
+- Contact submission parity is tested later, after the bootstrap is loaded globally from the Child Theme.
+- Visual/runtime/data checks can be completed first on the private preview page.
