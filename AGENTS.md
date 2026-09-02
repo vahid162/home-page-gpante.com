@@ -354,11 +354,11 @@ In these cases, report the constraint and propose the smallest safe next step.
 
 ## 20. Current project phase
 
-The project has completed theme/template and authenticated form-action preflight. Implementation may proceed section by section. Elementor Form `b25d804` currently performs `save-to-database` and `email`; any replacement contact handler must preserve both side effects.
+Repository Implementation v1 is complete and CI-validated. Do not switch Production yet. The next phase is staging integration and runtime/visual/functional validation against the real WordPress/WooCommerce/wpForo environment. Elementor Form `b25d804` parity remains mandatory: persistent storage plus email.
 
 Do not treat the homepage redesign/implementation as approved merely because this repository exists.
 
-Do not begin production integration until `docs/homepage-integration-architecture.md` and `docs/live-source-preflight.md` have been reviewed. The remaining blockers are the Woodmart/child-theme template hierarchy, Header/Footer Elementor dependency, and the current Elementor Pro form actions for form `b25d804`. Implementation should then proceed section by section.
+The architecture and authenticated preflight blockers are resolved. Repository code may be staged, but Production activation remains prohibited until staging runtime, visual, SEO, performance, Header/Footer regression, and contact-delivery validation pass.
 
 
 ## 21. Automated visual QA
