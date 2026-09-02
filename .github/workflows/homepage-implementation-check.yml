@@ -1,0 +1,73 @@
+name: Homepage Implementation Check
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/homepage/**"
+      - "templates/**"
+      - "integration/**"
+      - "tests/**"
+      - ".github/workflows/homepage-implementation-check.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "src/homepage/**"
+      - "templates/**"
+      - "integration/**"
+      - "tests/**"
+      - ".github/workflows/homepage-implementation-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  implementation-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show runtimes
+        run: |
+          php -v
+          node --version
+
+      - name: PHP syntax check
+        run: |
+          find src/homepage templates integration tests -type f -name '*.php' -print0 |
+            xargs -0 -n1 php -l
+
+      - name: JavaScript syntax check
+        run: node --check src/homepage/assets/homepage.js
+
+      - name: Callback normalization test
+        run: php tests/php/callback-normalization.php
+
+      - name: Reject direct SQL in homepage implementation
+        run: |
+          if grep -RInE '\$wpdb|\bSELECT\b|\bINSERT[[:space:]]+INTO\b|\bUPDATE[[:space:]]+[^_(]|\bDELETE[[:space:]]+FROM\b' src/homepage --include='*.php'; then
+            echo "Direct SQL/database access is not allowed in Homepage implementation."
+            exit 1
+          fi
+
+      - name: Verify production CSS remains scoped
+        run: |
+          if grep -nE '^(html|body|:root|\*,|\*::)' src/homepage/assets/homepage.css; then
+            echo "Unscoped global CSS selector detected."
+            exit 1
+          fi
+
+      - name: Verify safe activation gate
+        run: |
+          grep -Fq "is_page_template( 'templates/page-gpante-home.php' )" src/homepage/render.php
+          grep -Fq "gpante_home_is_enabled()" src/homepage/bootstrap.php
+
+      - name: Verify current contact parity exists
+        run: |
+          grep -Fq "wp_insert_post" src/homepage/forms/callback-request.php
+          grep -Fq "wp_mail" src/homepage/forms/callback-request.php
