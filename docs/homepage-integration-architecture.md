@@ -870,13 +870,23 @@ At this point, all public Data Sources except Contact side effects and Theme tem
 
 # 30. Remaining read-only checks before coding
 
-Only these blockers remain:
+The public Theme/Template preflight is now substantially complete:
 
-1. Woodmart/woodmart-child template hierarchy.
-2. Current active theme confirmation.
-3. Existing front-page/page-template behavior.
-4. Header/Footer Elementor dependency.
-5. Elementor Pro form `b25d804` actions and destinations.
-6. Exact current Homepage wpForo rendering code, if preserving byte-for-byte query semantics is required.
+- Homepage Page ID 10 uses no assigned custom Page Template.
+- No `front-page.php` was found in Child or Parent.
+- No Child `page.php` was found.
+- Parent `woodmart/page.php` exists and is the current template fallback path.
+- Woodmart Parent version is 8.5.7.
+- Woodmart Child version is 1.0.0 and contains live Homepage Q&A styling.
 
-Everything else can be implemented from documented public contracts.
+Only these authenticated read-only items remain:
+
+1. Confirm exact active `stylesheet` / theme status.
+2. Inspect Elementor Pro form `b25d804` action settings and destinations.
+3. Confirm whether Header/Footer require Elementor runtime assets before any dequeue work.
+
+Items 1 and 2 can be resolved with WP-CLI / WordPress authenticated read-only access. Item 3 can be resolved during staging asset/network validation.
+
+The Contact backend must not be replaced before item 2 is known.
+
+All non-contact homepage components can proceed to implementation planning from the documented public contracts.
