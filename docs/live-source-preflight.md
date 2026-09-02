@@ -219,3 +219,116 @@ Public HTML does **not** reveal all Elementor Form Actions configured in the edi
 - روش فعلی دقیق query برای Special Offers و Best-selling products.
 
 این موارد نباید حدس زده شوند.
+
+
+---
+
+## 14. Final theme/template preflight
+
+Public read-only checks on 2026-09-02 produced these results:
+
+### Homepage page object
+
+Page ID `10`:
+
+- status: `publish`
+- slug: `home-2`
+- public link: `https://gpante.com/`
+- assigned template: empty string (`""`)
+
+This means no custom Page Template is assigned to the Homepage page object.
+
+### Theme file path checks
+
+Observed HTTP results:
+
+- `/wp-content/themes/woodmart-child/front-page.php` → 404
+- `/wp-content/themes/woodmart-child/page.php` → 404
+- `/wp-content/themes/woodmart/front-page.php` → 404
+- `/wp-content/themes/woodmart/page.php` → file exists; direct request reaches PHP execution and returns 500 with empty body
+
+Combined with WordPress template hierarchy, the current Homepage resolves through the parent Woodmart `page.php` path when using the current static Page ID 10.
+
+### Theme headers
+
+`woodmart-child/style.css` is publicly present and declares:
+
+- Theme Name: Woodmart Child
+- Template: woodmart
+- Version: 1.0.0
+
+The same file currently contains custom Homepage wpForo Q&A CSS.
+
+`woodmart/style.css` declares:
+
+- Woodmart version: 8.5.7
+
+### Active theme status
+
+The WordPress REST themes endpoint returns HTTP 401 without authentication.
+
+Therefore the exact value of the active `stylesheet` option is not publicly readable.
+
+**[Strong inference]** The Child Theme is active because its stylesheet is loaded on the Homepage and contains live custom Homepage Q&A styles, while template fallback reaches the parent `page.php`.
+
+For implementation safety, exact active-theme confirmation should still be captured with one authenticated read-only command before deployment.
+
+## 15. Final Elementor form-action preflight
+
+Public inspection of form widget `b25d804` confirms:
+
+- Elementor Pro Form widget
+- page/post ID: 10
+- form ID: `b25d804`
+- visible field: `form_fields[name]`
+- field type: `tel`
+- HTML method: `POST`
+- form name: `New Form`
+
+The widget's public `data-settings` only exposes presentation/step settings such as:
+
+- `step_next_label`
+- `step_previous_label`
+- `button_width`
+- `step_type`
+- `step_icon_shape`
+
+The public HTML around the form contains no exposed values for:
+
+- `actions_after_submit`
+- Email action configuration
+- Webhook
+- Redirect
+- Elementor Submissions
+- Mailchimp
+- ActiveCampaign
+- GetResponse
+
+Elementor REST checks show:
+
+- public Elementor route index: available
+- Elementor globals: 401
+- Elementor Site Editor templates: 401
+- `wp/v2/pages/10?context=edit`: 401
+- no public `elementor-pro/v1/forms` resource exposing this form configuration
+
+Conclusion:
+
+**The current Elementor Form Actions cannot be verified from the public site. Authenticated read-only access is technically required.**
+
+Do not infer that the default Email action is active.
+
+## 16. Remaining authenticated read-only commands
+
+Once server/WP-CLI access is available, only these checks are needed:
+
+```bash
+wp option get stylesheet
+wp option get template
+wp theme list --status=active --fields=name,status,version --format=json
+wp post meta get 10 _elementor_data --format=json
+```
+
+The Elementor JSON output must be parsed only for widget ID `b25d804` and its action-related settings.
+
+No update, delete, activate, deactivate, search-replace, cache purge, or database write is required.
