@@ -373,6 +373,8 @@ http://localhost:8080/
 ## مستندات طراحی
 
 - [UI Brief صفحه اصلی](./docs/homepage-ui-brief.md)
+- [Integration Architecture](./docs/homepage-integration-architecture.md)
+- [Live Source Preflight](./docs/live-source-preflight.md)
 - [قواعد AI Agentها](./AGENTS.md)
 
 ## لینک‌ها
@@ -382,6 +384,6 @@ http://localhost:8080/
 
 ## وضعیت پروژه
 
-**Current phase: Visual Baseline v0.3 / QA Passed**
+**Current phase: Integration Architecture / Read-only Theme Preflight**
 
-Prototype مستقل Main Content تا نسخه v0.3 اصلاح شده و Visual QA واقعی در Desktop / Tablet / Mobile پاس شده است. v0.3 اکنون Visual Baseline پروژه است. اتصال داده‌های واقعی WordPress/WooCommerce هنوز آغاز نشده است.
+Visual Baseline v0.3 تثبیت شده و Data Source/Integration Architecture برای WordPress، WooCommerce و wpForo ثبت شده است. هنوز اتصال واقعی یا تغییر Production آغاز نشده است. گام بعدی فقط Read-only audit از Woodmart/woodmart-child و تنظیمات فعلی Elementor Form است.
