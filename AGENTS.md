@@ -354,7 +354,7 @@ In these cases, report the constraint and propose the smallest safe next step.
 
 ## 20. Current project phase
 
-The project is currently in integration architecture and read-only theme/form preflight.
+The project has completed public theme/template preflight. Non-contact homepage components may proceed to implementation. The contact backend remains blocked on authenticated read-only inspection of Elementor Form `b25d804` actions.
 
 Do not treat the homepage redesign/implementation as approved merely because this repository exists.
 
