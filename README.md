@@ -340,6 +340,22 @@ http://localhost:8080/
 
 این Prototype فقط Main Content را نمایش می‌دهد، از Mock Data استفاده می‌کند و به WordPress، WooCommerce یا Production متصل نیست.
 
+### Visual Baseline v0.3
+
+نسخه v0.3 پس از بررسی Screenshot واقعی در سه Viewport و اجرای تست‌های Regression به‌عنوان مبنای بصری فاز بعد ثبت شده است.
+
+تصمیم‌های تثبیت‌شده:
+
+- Hero دو ستونه فقط در Desktop.
+- Hero ساده و خواناتر در Tablet.
+- Hero بدون Visual تزئینی در Mobile.
+- Category Grid هماهنگ با RTL و Mobile.
+- Special Offers در Mobile به‌صورت Cardهای عمودی محدود، نه Carousel نیمه‌بریده.
+- Product Tabs Responsive.
+- Testimonials در Mobile به‌صورت Cardهای عمودی محدود.
+- Header و Footer خارج از Scope.
+- بدون اتصال داده واقعی در این مرحله.
+
 ## Visual QA خودکار
 
 برای جلوگیری از وابستگی تست بصری به دسترسی Browser این محیط، یک مسیر QA قابل تکرار داخل Repository اضافه شده است.
@@ -366,6 +382,6 @@ http://localhost:8080/
 
 ## وضعیت پروژه
 
-**Current phase: Responsive Prototype v0.2 / Visual Approval**
+**Current phase: Visual Baseline v0.3 / QA Passed**
 
-Prototype مستقل Main Content ایجاد و یک دور Visual Review روی ساختار و Responsive behavior انجام شده است. نسخه v0.2 اکنون برای بررسی و تأیید بصری در Desktop / Tablet / Mobile آماده است؛ اتصال داده‌های واقعی WordPress/WooCommerce هنوز آغاز نشده است.
+Prototype مستقل Main Content تا نسخه v0.3 اصلاح شده و Visual QA واقعی در Desktop / Tablet / Mobile پاس شده است. v0.3 اکنون Visual Baseline پروژه است. اتصال داده‌های واقعی WordPress/WooCommerce هنوز آغاز نشده است.
