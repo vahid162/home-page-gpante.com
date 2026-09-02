@@ -26,13 +26,15 @@ function gpante_home_get_categories(): array {
             continue;
         }
 
+        $thumbnail_id = absint( get_term_meta( $term->term_id, 'thumbnail_id', true ) );
+
         $items[] = [
-            'id'       => (int) $term->term_id,
-            'slug'     => (string) $term->slug,
-            'name'     => (string) $term->name,
-            'count'    => (int) $term->count,
-            'url'      => (string) $url,
-            'icon_key' => isset( $selected['icon'] ) ? (string) $selected['icon'] : '◇',
+            'id'           => (int) $term->term_id,
+            'slug'         => (string) $term->slug,
+            'name'         => (string) $term->name,
+            'count'        => (int) $term->count,
+            'url'          => (string) $url,
+            'thumbnail_id' => $thumbnail_id,
         ];
     }
 
