@@ -8,21 +8,17 @@ if ( ! $products ) {
     return;
 }
 
-$best_url     = gpante_home_get_bestseller_store_api_url( 4 );
+$best_url     = gpante_home_get_bestseller_store_api_url( 6 );
 $shop_url     = $data['editorial']['shop_url'] ?? home_url( '/' );
 $fallback_url = add_query_arg( 'orderby', 'popularity', $shop_url );
 ?>
 <section class="hp-section hp-shell" id="products" aria-labelledby="products-title" data-products-section data-best-sellers-url="<?php echo esc_url( $best_url ); ?>" data-best-sellers-fallback-url="<?php echo esc_url( $fallback_url ); ?>">
-    <div class="hp-section__head hp-section__head--products">
-        <div>
-            <p class="hp-eyebrow">پیشنهادهای پانته</p>
-            <h2 id="products-title">جدیدترین و محبوب‌ترین فایل‌ها</h2>
-            <p>تازه‌ترین فایل‌ها را ببینید یا بین طرح‌های محبوب‌تر جست‌وجو کنید.</p>
-        </div>
+    <div class="hp-products-head">
+        <h2 id="products-title">پیشنهادات ویژه</h2>
 
         <div class="hp-tabs" role="tablist" aria-label="نوع فهرست محصولات">
-            <button class="hp-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="new-products" id="tab-new" data-tab="new-products">جدیدترین‌ها</button>
-            <button class="hp-tab" type="button" role="tab" aria-selected="false" aria-controls="best-products" id="tab-best" data-tab="best-products">پرفروش‌ترین‌ها</button>
+            <button class="hp-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="new-products" id="tab-new" data-tab="new-products">جدیدترین ها</button>
+            <button class="hp-tab" type="button" role="tab" aria-selected="false" aria-controls="best-products" id="tab-best" data-tab="best-products">پرفروش ترین ها</button>
         </div>
     </div>
 
@@ -39,14 +35,4 @@ $fallback_url = add_query_arg( 'orderby', 'popularity', $shop_url );
             <p class="hp-products-loading" data-best-products-status>در حال دریافت پرفروش‌ترین‌ها…</p>
         </div>
     </div>
-
-    <div class="hp-center-action">
-        <a class="hp-btn hp-btn--secondary" href="<?php echo esc_url( $shop_url ); ?>">مشاهده همه فایل‌ها</a>
-    </div>
-
-    <noscript>
-        <p class="hp-noscript-link">
-            <a href="<?php echo esc_url( $fallback_url ); ?>">مشاهده پرفروش‌ترین‌ها در فروشگاه</a>
-        </p>
-    </noscript>
 </section>
