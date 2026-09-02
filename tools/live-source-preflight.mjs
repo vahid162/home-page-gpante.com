@@ -179,20 +179,13 @@ for (const url of qnaUrls) {
   }
 }
 
-fs.writeFileSync(
-  path.join(outDir, "live-source-report.json"),
-  JSON.stringify(report, null, 2),
-  "utf8"
-);
-
-console.log(JSON.stringify(report, null, 2));
-
-
 const elementorCandidateRoutes = [
+  "/wp-json/elementor/v1/documents",
   "/wp-json/elementor/v1/documents/10",
-  "/wp-json/elementor/v1/documents/10/elements",
   "/wp-json/elementor/v1/globals",
-  "/wp-json/elementor-pro/v1/forms"
+  "/wp-json/elementor/v1/site-editor/templates",
+  "/wp-json/elementor-pro/v1/forms",
+  "/wp-json/wp/v2/pages/10?context=edit"
 ];
 
 report.wordpress.elementorCandidateRequests = {};
@@ -209,3 +202,56 @@ for (const route of elementorCandidateRoutes) {
     report.wordpress.elementorCandidateRequests[route] = { error: error.message };
   }
 }
+
+
+const formNeedle = "b25d804";
+const formIndex = homepage.text.indexOf(formNeedle);
+const formWindow = formIndex >= 0
+  ? homepage.text.slice(Math.max(0, formIndex - 7000), Math.min(homepage.text.length, formIndex + 7000))
+  : "";
+
+report.homepage.formSourceDiagnostics = {
+  foundFormId: formIndex >= 0,
+  nearbyHtmlPreview: formWindow.slice(0, 14000),
+  publicActionHints: {
+    actionsAfterSubmit: /actions_after_submit/i.test(formWindow),
+    webhook: /webhook/i.test(formWindow),
+    email: /email/i.test(formWindow),
+    redirect: /redirect/i.test(formWindow),
+    submissions: /submissions?/i.test(formWindow),
+    mailchimp: /mailchimp/i.test(formWindow),
+    activecampaign: /activecampaign/i.test(formWindow),
+    getresponse: /getresponse/i.test(formWindow)
+  }
+};
+
+const themePhpCandidates = [
+  "/wp-content/themes/woodmart-child/front-page.php",
+  "/wp-content/themes/woodmart-child/page.php",
+  "/wp-content/themes/woodmart/front-page.php",
+  "/wp-content/themes/woodmart/page.php"
+];
+
+report.wordpress.themePhpCandidateRequests = {};
+for (const route of themePhpCandidates) {
+  try {
+    const result = await fetchText(base + route);
+    report.wordpress.themePhpCandidateRequests[route] = {
+      status: result.status,
+      ok: result.ok,
+      contentType: result.contentType,
+      bodyLength: result.text.length,
+      bodyPreview: result.text.slice(0, 300)
+    };
+  } catch (error) {
+    report.wordpress.themePhpCandidateRequests[route] = { error: error.message };
+  }
+}
+
+fs.writeFileSync(
+  path.join(outDir, "live-source-report.json"),
+  JSON.stringify(report, null, 2),
+  "utf8"
+);
+
+console.log(JSON.stringify(report, null, 2));
