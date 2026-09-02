@@ -3,6 +3,7 @@
 define( 'ABSPATH', __DIR__ . '/' );
 
 function add_action() {}
+function add_filter() {}
 
 require_once __DIR__ . '/../../src/homepage/forms/callback-request.php';
 
