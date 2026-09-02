@@ -354,11 +354,11 @@ In these cases, report the constraint and propose the smallest safe next step.
 
 ## 20. Current project phase
 
-The project is currently in documentation, inventory, architecture, and planning.
+The project is currently in integration architecture and read-only theme/form preflight.
 
 Do not treat the homepage redesign/implementation as approved merely because this repository exists.
 
-Implementation should proceed section by section after the required behavior, data source, visual target, and acceptance criteria for that section are understood.
+Do not begin production integration until `docs/homepage-integration-architecture.md` and `docs/live-source-preflight.md` have been reviewed. The remaining blockers are the Woodmart/child-theme template hierarchy, Header/Footer Elementor dependency, and the current Elementor Pro form actions for form `b25d804`. Implementation should then proceed section by section.
 
 
 ## 21. Automated visual QA
@@ -382,3 +382,21 @@ Requirements:
 - Do not claim screenshot-based visual QA passed unless the workflow completed successfully and its outputs were inspected.
 - If direct browser access to GitHub or another external host is blocked, do not treat that as a blocker. Use the repository workflow or a local checkout/file-based render path instead.
 - CI-only QA dependencies must not be added to the production front-end bundle.
+
+
+## 22. Integration architecture source of truth
+
+Before implementing dynamic homepage integration, read:
+
+- `docs/homepage-integration-architecture.md`
+- `docs/live-source-preflight.md`
+
+Mandatory decisions from those documents:
+
+- Preserve the current Hero product-search GET contract unless explicitly changed.
+- Use WooCommerce APIs for product data; do not query product tables directly.
+- Treat homepage category selection as curated configuration while resolving names/counts/URLs dynamically.
+- Use wpForo PHP APIs for recent community activity; do not invent a wpForo REST endpoint or query its tables directly.
+- Do not replace the Elementor callback form backend until the current form actions for `b25d804` have been inspected read-only.
+- Do not dequeue Elementor assets unless Header/Footer dependency has been proven absent.
+- Keep current Elementor homepage data restorable until production validation is complete.
