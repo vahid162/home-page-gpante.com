@@ -1,7 +1,7 @@
 # UI Brief — Main Content صفحه اصلی gpante.com
 
 **نسخه:** 0.1  
-**وضعیت:** Draft for design review  
+**وضعیت:** Visual baseline v0.3 approved for implementation planning  
 **محدوده:** فقط Main Content صفحه اصلی  
 **خارج از محدوده:** Header و Footer
 
@@ -937,3 +937,23 @@ Design phase زمانی قابل پایان است که:
 - برای بخش‌های مجهول، سؤال یا Preflight مشخص وجود داشته باشد.
 
 پس از این مرحله، پروژه وارد Prototype و سپس Implementation می‌شود.
+
+
+---
+
+# 25. Visual Baseline v0.3
+
+پس از ساخت Prototype و بررسی Screenshot واقعی در Desktop، Tablet و Mobile، نسخه v0.3 به‌عنوان Visual Baseline پروژه انتخاب شد.
+
+Baseline شامل این تصمیم‌ها است:
+
+- Desktop Hero دارای Visual صنعتی و Layout دو بخشی است.
+- Tablet Hero برای جلوگیری از فشردگی متن، Visual تزئینی را حذف می‌کند.
+- Mobile Hero کوتاه و Content-first است.
+- Special Offers در Mobile Carousel نیمه‌بریده ندارد.
+- Testimonials در Mobile Carousel نیمه‌بریده ندارد.
+- RTL، Heading hierarchy و Focus states حفظ می‌شوند.
+- Header و Footer همچنان خارج از Scope هستند.
+- این تأیید فقط مربوط به Design/Prototype است و به معنی تأیید Data Integration نیست.
+
+گام بعدی: طراحی Architecture اتصال Componentها به WordPress/WooCommerce و تأیید Data Source هر Section پیش از Implementation.
