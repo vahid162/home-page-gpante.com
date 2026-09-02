@@ -322,6 +322,24 @@ Sectionها در Template نهایی Homepage ترکیب می‌شوند.
 - اطلاعات پویا نباید بی‌دلیل Hard-code شوند.
 - هیچ ادعای Performance بدون Benchmark پذیرفته نیست.
 
+## Prototype قابل اجرا
+
+نسخهٔ مستقل Front-end برای بررسی Visual Direction و Responsive behavior در پوشهٔ [prototype](./prototype/) قرار دارد.
+
+برای اجرای محلی:
+
+```bash
+python -m http.server 8080 -d prototype
+```
+
+سپس آدرس زیر را در Browser باز کنید:
+
+```text
+http://localhost:8080/
+```
+
+این Prototype فقط Main Content را نمایش می‌دهد، از Mock Data استفاده می‌کند و به WordPress، WooCommerce یا Production متصل نیست.
+
 ## مستندات طراحی
 
 - [UI Brief صفحه اصلی](./docs/homepage-ui-brief.md)
@@ -334,6 +352,6 @@ Sectionها در Template نهایی Homepage ترکیب می‌شوند.
 
 ## وضعیت پروژه
 
-**Current phase: UI Brief / Design Direction / Prototype Preparation**
+**Current phase: Responsive Prototype / Visual Review**
 
-UI Brief اولیه ثبت شده است. گام بعدی، ساخت Prototype سبک و Responsive برای Main Content بر اساس سند طراحی و سپس بررسی و تأیید Visual Direction است.
+Prototype مستقل Main Content ایجاد شده است. گام بعدی، بررسی Visual Direction در Desktop / Tablet / Mobile، ثبت اصلاحات طراحی و سپس تأیید قبل از اتصال داده‌های واقعی WordPress/WooCommerce است.
