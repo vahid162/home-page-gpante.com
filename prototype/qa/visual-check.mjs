@@ -90,6 +90,17 @@ for (const viewport of viewports) {
     );
   }
 
+  if (viewport.name === "tablet") {
+    const heroVisualDisplay = await page
+      .locator(".hp-hero__visual")
+      .evaluate((el) => getComputedStyle(el).display);
+    record(
+      "tablet: hero avoids the compressed two-column visual",
+      heroVisualDisplay === "none",
+      `display=${heroVisualDisplay}`
+    );
+  }
+
   if (viewport.name === "mobile") {
     const toggle = page.locator("[data-category-toggle]");
     record("mobile: category expansion control is visible", await toggle.isVisible());
@@ -109,6 +120,34 @@ for (const viewport of viewports) {
       "mobile: decorative hero visual is removed from above-the-fold",
       heroVisualDisplay === "none",
       `display=${heroVisualDisplay}`
+    );
+
+    const offersDisplay = await page
+      .locator(".hp-product-strip")
+      .evaluate((el) => getComputedStyle(el).display);
+    const thirdOfferVisible = await page
+      .locator(".hp-product-strip .hp-product-card")
+      .nth(2)
+      .isVisible();
+
+    record(
+      "mobile: special offers use a stable vertical layout",
+      offersDisplay === "grid" && !thirdOfferVisible,
+      `display=${offersDisplay}, thirdVisible=${thirdOfferVisible}`
+    );
+
+    const testimonialsDisplay = await page
+      .locator(".hp-testimonial-grid")
+      .evaluate((el) => getComputedStyle(el).display);
+    const thirdTestimonialVisible = await page
+      .locator(".hp-testimonial")
+      .nth(2)
+      .isVisible();
+
+    record(
+      "mobile: testimonials avoid clipped carousel cards",
+      testimonialsDisplay === "grid" && !thirdTestimonialVisible,
+      `display=${testimonialsDisplay}, thirdVisible=${thirdTestimonialVisible}`
     );
   }
 
